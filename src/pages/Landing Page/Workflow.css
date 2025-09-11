@@ -1,0 +1,86 @@
+.workflow {
+  padding: 100px 0;
+  background: linear-gradient(135deg, #f8fdff 0%, #e6f9ff 100%);
+}
+
+.workflow-steps {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.workflow-step {
+  position: relative;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 188, 212, 0.1);
+  border-radius: 20px;
+  padding: 40px 30px;
+  text-align: center;
+  min-width: 200px;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 188, 212, 0.1);
+}
+
+.workflow-step:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 188, 212, 0.2);
+  border-color: rgba(0, 188, 212, 0.3);
+}
+
+.step-number {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #00bcd4 0%, #26c6da 100%);
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.step-icon {
+  font-size: 2.5rem;
+  margin: 20px 0;
+}
+
+.step-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 10px;
+}
+
+.step-description {
+  color: #718096;
+  font-size: 0.95rem;
+}
+
+.step-arrow {
+  position: absolute;
+  right: -30px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  color: #00bcd4;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .workflow-steps {
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .step-arrow {
+    display: none;
+  }
+}

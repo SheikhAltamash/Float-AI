@@ -1,0 +1,200 @@
+.scroll-progress-bar {
+  /* Positioning: Fixed to the top of the viewport */
+  position: fixed;
+  top: 4.5rem;
+  left: 0;
+  right: 0;
+
+  /* Size & Appearance */
+  height: 4px;
+  
+  /* Animated gradient background matching FloatChat theme */
+  background: linear-gradient(-45deg, #00bcd4, #26c6da, #4facfe, #00f2fe, #00bcd4, #26c6da);
+  background-size: 400% 400%;
+  
+  /* Animation */
+  animation: progressGradientShift 3s ease infinite;
+
+  /* 
+    IMPORTANT: This makes the bar grow from the left side.
+    Without this, it would grow from the center.
+  */
+  transform-origin: left;
+
+  /* Ensure it's on top of most other content */
+  z-index: 99;
+  
+  /* Add glow effect */
+  box-shadow: 
+    0 0 10px rgba(0, 188, 212, 0.3),
+    0 0 20px rgba(0, 188, 212, 0.1),
+    0 2px 4px rgba(0, 188, 212, 0.2);
+  
+  /* Smooth transitions */
+  transition: all 0.3s ease;
+}
+
+/* Gradient animation keyframes */
+@keyframes progressGradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* 
+  A special "modifier" class we can add to place the bar 
+  BELOW our header.
+*/
+.scroll-progress-bar.below-header {
+  top: 80px; /* The height of our main header */
+}
+
+/* Enhanced version with more dynamic animation */
+.scroll-progress-bar.enhanced {
+  height: 5px;
+  background: linear-gradient(
+    45deg,
+    #00bcd4,
+    #26c6da,
+    #4facfe,
+    #00f2fe,
+    #64b5f6,
+    #42a5f5,
+    #26c6da,
+    #00bcd4
+  );
+  background-size: 800% 800%;
+  animation: progressWaveAnimation 4s ease infinite;
+  
+  /* Enhanced glow */
+  box-shadow: 
+    0 0 15px rgba(0, 188, 212, 0.4),
+    0 0 30px rgba(0, 188, 212, 0.2),
+    0 3px 6px rgba(0, 188, 212, 0.3);
+}
+
+@keyframes progressWaveAnimation {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 100% 25%;
+  }
+  50% {
+    background-position: 200% 50%;
+  }
+  75% {
+    background-position: 100% 75%;
+  }
+}
+
+/* Pulsing version */
+.scroll-progress-bar.pulsing {
+  animation: 
+    progressGradientShift 3s ease infinite,
+    progressPulse 2s ease infinite;
+}
+
+@keyframes progressPulse {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scaleY(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1.2);
+  }
+}
+
+/* Shimmer effect version */
+.scroll-progress-bar.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-progress-bar.shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.6),
+    transparent
+  );
+  animation: progressShimmer 2s infinite;
+}
+
+@keyframes progressShimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .scroll-progress-bar {
+    height: 5px;
+    top: 3.6rem; /* Adjust for mobile header height */
+  }
+  
+  .scroll-progress-bar.below-header {
+    top: 60px; /* Mobile header height */
+  }
+}
+
+@media (max-width: 480px) {
+  .scroll-progress-bar {
+    height: 3px;
+    box-shadow: 
+      0 0 8px rgba(0, 188, 212, 0.3),
+      0 0 15px rgba(0, 188, 212, 0.1);
+  }
+}
+
+/* Smooth scroll behavior enhancement */
+.scroll-progress-bar.smooth {
+  transition: transform 0.1s linear;
+}
+
+/* High contrast version for accessibility */
+@media (prefers-contrast: high) {
+  .scroll-progress-bar {
+    background: linear-gradient(-45deg, #0088cc, #00aadd);
+    box-shadow: none;
+  }
+}
+
+/* Reduced motion version */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-progress-bar {
+    animation: none;
+    background: linear-gradient(90deg, #00bcd4, #26c6da);
+  }
+  
+  .scroll-progress-bar.shimmer::after {
+    animation: none;
+  }
+}
+
+/* Dark theme support */
+@media (prefers-color-scheme: dark) {
+  .scroll-progress-bar {
+    box-shadow: 
+      0 0 10px rgba(0, 188, 212, 0.5),
+      0 0 20px rgba(0, 188, 212, 0.3),
+      0 2px 4px rgba(0, 188, 212, 0.4);
+  }
+}
