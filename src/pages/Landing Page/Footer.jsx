@@ -108,7 +108,7 @@ function Footer() {
             >
               altamashsheikh077@gmail.com
             </motion.a>
-            <div className="social-links">
+            {/* <div className="social-links">
               <motion.a
                 href="#"
                 className="social-link"
@@ -133,7 +133,7 @@ function Footer() {
               >
                 📧
               </motion.a>
-            </div>
+            </div> */}
           </motion.div>
         </motion.div>
 
