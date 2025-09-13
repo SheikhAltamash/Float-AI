@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Plot from "react-plotly.js";
-import FullscreenButton from "../common/FullScreen";
+import FullscreenButton from "../common/FullScreenButtons";
 import { getCommonLayout } from "../utils/chartConfig";
 
 function LineChart({
