@@ -10,13 +10,13 @@ function ChartTypeSelector({
   compact = false,
 }) {
   const allChartTypes = [
-    { value: "line", label: "Line Chart", icon: "📈" },
-    { value: "bar", label: "Bar Chart", icon: "📊" },
-    { value: "multi", label: "Multi Line", icon: "📉" },
-    { value: "multi-bar", label: "Multi Bar", icon: "📊" },
-    { value: "scatter", label: "Scatter Plot", icon: "⚡" },
-    { value: "area", label: "Area Chart", icon: "🏔️" },
-    { value: "heatmap", label: "Heat Map", icon: "🔥" },
+    { value: "line", label: "Line Chart" },
+    { value: "bar", label: "Bar Chart" },
+    { value: "multi", label: "Multi Line" },
+    { value: "multi-bar", label: "Multi Bar" },
+    { value: "scatter", label: "Scatter Plot" },
+    { value: "area", label: "Area Chart" },
+    { value: "heatmap", label: "Heat Map" },
   ];
 
   // Filter chart types based on supported types
@@ -41,7 +41,6 @@ function ChartTypeSelector({
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <span className="chart-type-icon">{type.icon}</span>
             <span className="chart-type-label">{type.label}</span>
           </motion.button>
         ))}
@@ -62,7 +61,7 @@ function ChartTypeSelector({
         >
           {chartTypes.map((type) => (
             <option key={type.value} value={type.value}>
-              {type.icon} {type.label}
+              {type.label}
             </option>
           ))}
         </motion.select>
@@ -78,6 +77,11 @@ function ChartTypeSelector({
           </svg>
         </div>
       </div>
+      {chartTypes.length === 0 && (
+        <div className="no-charts-available">
+          <span>No chart types available for current data</span>
+        </div>
+      )}
     </div>
   );
 }

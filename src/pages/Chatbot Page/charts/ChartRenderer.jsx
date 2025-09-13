@@ -110,7 +110,6 @@ function ChartRenderer({
             }`}
             onClick={() => handleSectionToggle("chartType")}
           >
-            <span className="control-icon">📊</span>
             <span className="control-text">Chart Type</span>
             <span
               className={`control-arrow ${
@@ -127,7 +126,6 @@ function ChartRenderer({
             }`}
             onClick={() => handleSectionToggle("colors")}
           >
-            <span className="control-icon">🎨</span>
             <span className="control-text">Colors</span>
             <span
               className={`control-arrow ${
@@ -144,7 +142,6 @@ function ChartRenderer({
             }`}
             onClick={() => handleSectionToggle("download")}
           >
-            <span className="control-icon">📥</span>
             <span className="control-text">Download</span>
             <span
               className={`control-arrow ${

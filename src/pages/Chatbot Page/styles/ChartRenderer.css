@@ -339,3 +339,113 @@
     padding: 6px 8px;
   }
 }
+/* Remove icon-specific styles and update compact layouts */
+
+/* Chart Type Compact Expanded - Updated without icons */
+.chart-type-compact-expanded {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.chart-type-option {
+  background: rgba(0, 188, 212, 0.1);
+  border: 1px solid rgba(0, 188, 212, 0.3);
+  border-radius: 8px;
+  padding: 12px 16px; /* Increased padding since no icon */
+  color: #cbd5e0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 100px; /* Wider since text only */
+}
+
+.chart-type-option:hover {
+  background: rgba(0, 188, 212, 0.2);
+  transform: translateY(-2px);
+}
+
+.chart-type-option.active {
+  background: rgba(0, 188, 212, 0.3);
+  border-color: #00bcd4;
+  color: #00bcd4;
+}
+
+.chart-type-label {
+  font-size: 0.85rem;
+  text-align: center;
+  line-height: 1;
+  font-weight: 500;
+}
+
+/* Download Button Compact Expanded - Updated without icons */
+.download-button-compact-expanded {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.download-option-compact {
+  background: rgba(56, 178, 172, 0.1);
+  border: 1px solid rgba(56, 178, 172, 0.3);
+  border-radius: 8px;
+  padding: 12px 16px; /* Increased padding since no icon */
+  color: #f1f5f9;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 80px;
+}
+
+.download-option-compact:hover {
+  background: rgba(56, 178, 172, 0.2);
+  transform: translateY(-2px);
+}
+
+.download-option-format-compact {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Remove control icons from main buttons */
+.control-button {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 12px 16px;
+  color: #cbd5e0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border-right: 1px solid rgba(0, 188, 212, 0.1);
+}
+
+.control-text {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .chart-type-option,
+  .download-option-compact {
+    min-width: 80px;
+    padding: 10px 12px;
+  }
+  
+  .chart-type-label,
+  .download-option-format-compact {
+    font-size: 0.75rem;
+  }
+}

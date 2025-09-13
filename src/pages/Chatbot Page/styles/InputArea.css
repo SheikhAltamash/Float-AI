@@ -127,3 +127,84 @@
     height: 30px;
   }
 }
+
+
+
+.message-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 12px 14px; /* Increased padding */
+  color: #ffffff;
+  font-size: 0.85rem;
+  outline: none;
+  resize: none;
+  min-height: 24px; /* Increased from 18px */
+  max-height: 120px; /* Slightly increased max-height */
+  font-family: inherit;
+  line-height: 1.4;
+  display: flex;
+  align-items: center; /* Center text vertically */
+}
+
+.input-wrapper {
+  display: flex;
+  gap: 0.5rem;
+  background: rgba(0, 188, 212, 0.08);
+  border: 1px solid rgba(0, 188, 212, 0.3);
+  border-radius: 16px;
+  padding: 0.2rem 0.4rem; /* Reduced padding to give more space to input */
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  margin: 0 1.5rem;
+  align-items: center; /* Ensure proper alignment */
+}
+
+.send-button {
+  background: linear-gradient(135deg, #00bcd4 0%, #26c6da 100%);
+  border: none;
+  border-radius: 12px;
+  width: 36px; /* Slightly larger */
+  height: 36px; /* Slightly larger */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  align-self: center; /* Changed from flex-end to center */
+  flex-shrink: 0;
+}
+
+/* Mobile responsive fixes */
+@media (max-width: 768px) {
+  .input-container {
+    left: 0;
+    right: 0;
+    padding: 0.6rem;
+    border-radius: 0;
+  }
+  
+  .input-container.sidebar-collapsed {
+    left: 0;
+  }
+  
+  .input-wrapper {
+    margin: 0 0.5rem;
+    padding: 0.2rem 0.4rem;
+  }
+  
+  .message-input {
+    padding: 10px 12px; /* Adjusted mobile padding */
+    min-height: 22px; /* Slightly smaller on mobile */
+  }
+  
+  .send-button {
+    width: 32px;
+    height: 32px;
+  }
+}
+.message-input-single {
+  height: 24px;
+  line-height: 1.4;
+  padding: 12px 14px;
+}
