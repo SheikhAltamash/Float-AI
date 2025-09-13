@@ -1,16 +1,28 @@
+// MessageItems.js
 import React from "react";
 import ChartRenderer from "./charts/ChartRenderer";
+import { motion } from "framer-motion";
 import "./styles/MessageList.css";
 
 function MessageItem({ message }) {
   const hasChart = message.data && message.chartType;
+  const isError =
+    message.type === "ai" &&
+    message.content.includes("Sorry, I couldn't process");
 
   return (
-    <div className={`message ${message.type}-message`}>
+    <motion.div
+      className={`message ${message.type}-message ${
+        isError ? "error-message" : ""
+      }`}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
+    >
       <div className="message-content">
         <p>{message.content}</p>
 
-        {hasChart && (
+        {hasChart && !isError && (
           <div className="chart-section">
             <ChartRenderer
               data={message.data}
@@ -20,8 +32,17 @@ function MessageItem({ message }) {
             />
           </div>
         )}
+
+        {isError && (
+          <div className="error-indicator">
+            <span className="error-icon">⚠️</span>
+            <span>
+              Please try rephrasing your question or check your connection.
+            </span>
+          </div>
+        )}
       </div>
-    </div>
+    </motion.div>
   );
 }
 
