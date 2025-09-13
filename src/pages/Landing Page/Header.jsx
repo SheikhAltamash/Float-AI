@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import "./Header.css";
-
+import { Link } from 'react-router-dom';
 function Header() {
   const navVariants = {
     hidden: { y: -20, opacity: 0 },
@@ -93,14 +93,16 @@ function Header() {
             >
               Learn More
             </motion.button>
+            <Link to='/chat'>
             <motion.button
               className="btn-primary"
               variants={buttonVariants}
               whileHover="hover"
               whileTap="tap"
             >
+              
               Launch Demo
-            </motion.button>
+            </motion.button></Link>
           </motion.div>
         </div>
       </div>

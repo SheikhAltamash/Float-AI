@@ -1,0 +1,293 @@
+.chart-renderer {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.chart-renderer.fullscreen-mode {
+  position: relative;
+}
+
+.chart-display {
+  position: relative;
+}
+
+.chart-display .chart-container {
+  margin-top: 0;
+}
+
+/* Chart container styling */
+.chart-container {
+  background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-top: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.chart-container.in-fullscreen {
+  padding: 2rem;
+  background: #0f0f0f !important;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 0;
+  margin: 0;
+}
+
+.chart-container.in-fullscreen .chart-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.chart-container.in-fullscreen .chart-stats {
+  justify-content: center;
+  gap: 2rem;
+}
+
+/* Smaller Fullscreen Exit Button */
+.fullscreen-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(0, 188, 212, 0.1);
+  border: 1px solid rgba(0, 188, 212, 0.3);
+  border-radius: 6px;
+  padding: 6px 10px; /* Reduced padding */
+  color: #00bcd4;
+  font-size: 0.75rem; /* Smaller font */
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem; /* Smaller gap */
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+}
+
+.fullscreen-btn:hover {
+  background: rgba(0, 188, 212, 0.2);
+  border-color: #00bcd4;
+  box-shadow: 0 2px 8px rgba(0, 188, 212, 0.2);
+}
+
+/* Much smaller exit button in fullscreen */
+.fullscreen-btn.in-fullscreen {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  background: rgba(255, 99, 71, 0.1);
+  border: 1px solid rgba(255, 99, 71, 0.4);
+  color: #ff6347;
+  padding: 4px 8px; /* Much smaller padding */
+  font-size: 0.7rem; /* Smaller font */
+  border-radius: 4px;
+}
+
+.fullscreen-btn.in-fullscreen:hover {
+  background: rgba(255, 99, 71, 0.2);
+  border-color: #ff6347;
+}
+
+.fullscreen-btn.in-fullscreen .fullscreen-text {
+  display: none; /* Hide text in fullscreen, only show icon */
+}
+
+/* Customization Toggle Button */
+.customization-toggle-btn {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(0, 188, 212, 0.15);
+  border: 1px solid rgba(0, 188, 212, 0.4);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: #00bcd4;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 1100;
+  backdrop-filter: blur(10px);
+}
+
+.customization-toggle-btn:hover {
+  background: rgba(0, 188, 212, 0.25);
+  border-color: #00bcd4;
+  transform: scale(1.02);
+}
+
+.toggle-icon {
+  font-size: 1rem;
+}
+
+.toggle-text {
+  font-size: 0.85rem;
+}
+
+/* Fullscreen Controls Panel */
+.fullscreen-controls-panel {
+  position: fixed;
+  top: 4rem;
+  right: 1rem;
+  width: 320px;
+  max-height: calc(100vh - 5rem);
+  background: linear-gradient(135deg, rgba(10, 10, 10, 0.95) 0%, rgba(20, 20, 20, 0.95) 100%);
+  border: 2px solid rgba(0, 188, 212, 0.4);
+  border-radius: 12px;
+  backdrop-filter: blur(20px);
+  z-index: 1150;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+  animation: slideInRight 0.3s ease;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.fullscreen-controls-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  background: linear-gradient(135deg, rgba(0, 188, 212, 0.2) 0%, rgba(75, 172, 254, 0.2) 100%);
+  border-bottom: 1px solid rgba(0, 188, 212, 0.3);
+}
+
+.fullscreen-controls-header h3 {
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.close-controls-btn {
+  background: rgba(255, 99, 71, 0.1);
+  border: 1px solid rgba(255, 99, 71, 0.3);
+  border-radius: 4px;
+  color: #ff6347;
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+.close-controls-btn:hover {
+  background: rgba(255, 99, 71, 0.2);
+  border-color: #ff6347;
+}
+
+.fullscreen-controls-content {
+  padding: 1.25rem;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+}
+
+.fullscreen-control-section {
+  margin-bottom: 1.5rem;
+}
+
+.fullscreen-control-section:last-child {
+  margin-bottom: 0;
+}
+
+/* Enhanced fullscreen component styling */
+.fullscreen-selector .chart-type-select {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  background: rgba(0, 188, 212, 0.15);
+  border: 2px solid rgba(0, 188, 212, 0.4);
+}
+
+.fullscreen-customizer {
+  border: 2px solid rgba(0, 188, 212, 0.3);
+}
+
+.fullscreen-customizer .color-toggle-btn {
+  padding: 14px 18px;
+  font-size: 0.9rem;
+}
+
+.fullscreen-customizer .color-input {
+  width: 45px;
+  height: 35px;
+}
+
+.fullscreen-download .download-toggle {
+  padding: 14px 18px;
+  font-size: 0.9rem;
+  background: rgba(0, 188, 212, 0.15);
+  border: 2px solid rgba(0, 188, 212, 0.4);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .fullscreen-controls-panel {
+    top: 3.5rem;
+    right: 0.5rem;
+    left: 0.5rem;
+    width: auto;
+  }
+  
+  .fullscreen-controls-content {
+    padding: 1rem;
+  }
+  
+  .chart-container.in-fullscreen {
+    padding: 1rem;
+  }
+  
+  .fullscreen-btn.in-fullscreen {
+    top: 0.5rem;
+    left: 0.5rem;
+    padding: 3px 6px;
+    font-size: 0.65rem;
+  }
+  
+  .customization-toggle-btn {
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+  
+  .toggle-text {
+    display: none; /* Hide text on mobile */
+  }
+}
+
+/* Scrollbar for fullscreen controls */
+.fullscreen-controls-content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.fullscreen-controls-content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+}
+
+.fullscreen-controls-content::-webkit-scrollbar-thumb {
+  background: rgba(0, 188, 212, 0.5);
+  border-radius: 2px;
+}
+
+.fullscreen-controls-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 188, 212, 0.7);
+}

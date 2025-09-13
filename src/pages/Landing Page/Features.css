@@ -36,7 +36,7 @@
 }
 
 .feature-card:hover {
-  transform: translateY(-10px);
+  /* transform: translateY(-10px); */
   box-shadow: 0 20px 40px rgba(0, 188, 212, 0.2);
   border-color: rgba(0, 188, 212, 0.3);
 }
@@ -56,6 +56,10 @@
 .feature-description {
   color: #718096;
   line-height: 1.6;
+}
+.feature-icon{
+  width: 100px;
+  height: 100px;
 }
 
 @media (max-width: 768px) {

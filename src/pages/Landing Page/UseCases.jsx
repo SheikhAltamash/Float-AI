@@ -5,22 +5,22 @@ import "./UseCases.css";
 function UseCases() {
   const useCases = [
     {
-      icon: "🌊",
+      icon: "/landing/who/res.png",
       title: "Researchers",
       description: "Advanced data analysis and research tools",
     },
     {
-      icon: "🏛️",
+      icon: "/landing/who/pol.png",
       title: "Policymakers",
       description: "Data-driven insights for policy decisions",
     },
     {
-      icon: "🎓",
+      icon: "/landing/who/stu.png",
       title: "Students",
       description: "Educational tools and interactive learning",
     },
     {
-      icon: "🌱",
+      icon: "/landing/who/env.png",
       title: "Environmental Monitoring",
       description: "Real-time environmental tracking and alerts",
     },
@@ -96,13 +96,14 @@ function UseCases() {
               variants={tileVariants}
               whileHover={hoverEffect}
             >
-              <motion.div
-                className="use-case-icon"
+              <motion.img
+                src={useCase.icon}
+                alt={useCase.title}
+                className="feature-icon"
                 whileHover={{ scale: 1.3, rotate: 10 }}
                 transition={{ duration: 0.3 }}
-              >
-                {useCase.icon}
-              </motion.div>
+              />
+
               <h3 className="use-case-title">{useCase.title}</h3>
               <p className="use-case-description">{useCase.description}</p>
             </motion.div>

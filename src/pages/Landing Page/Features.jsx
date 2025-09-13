@@ -5,27 +5,27 @@ import "./Features.css";
 function Features() {
   const features = [
     {
-      icon: "🗣️",
+      icon: "/landing/chat.png",
       title: "Chat with Data",
       description: "Ask natural questions and get instant answers.",
     },
     {
-      icon: "📊",
+      icon: "/landing/int.png",
       title: "Interactive Dashboards",
       description: "Depth profiles, time-series, maps, and heatmaps.",
     },
     {
-      icon: "🔍",
+      icon: "/landing/smart.png",
       title: "Smart Retrieval",
       description: "AI + hybrid search ensures accurate results.",
     },
     {
-      icon: "⚠️",
+      icon: "/landing/ano.png",
       title: "Anomaly Alerts",
       description: "Detect climate/ocean changes in real time.",
     },
     {
-      icon: "📑",
+      icon: "/landing/exp.png",
       title: "Export Options",
       description: "Download results in multiple formats.",
     },
@@ -102,13 +102,13 @@ function Features() {
               whileHover="hover"
               {...hoverVariants}
             >
-              <motion.div
+              <motion.img
+                src={feature.icon}
+                alt={feature.title}
                 className="feature-icon"
                 whileHover={{ scale: 1.2, rotate: 5 }}
                 transition={{ duration: 0.3 }}
-              >
-                {feature.icon}
-              </motion.div>
+              />
               <h3 className="feature-title">{feature.title}</h3>
               <p className="feature-description">{feature.description}</p>
             </motion.div>

@@ -53,7 +53,9 @@ function Footer() {
         >
           <motion.div className="footer-brand" variants={itemVariants}>
             <div className="footer-logo">
-              <span className="logo-text">FloatAI</span>
+              <span className="title-highlight animated-gradient slow">
+                Float AI
+              </span>
             </div>
             <p className="footer-tagline">Conversational AI for Ocean Data</p>
           </motion.div>
@@ -72,7 +74,7 @@ function Footer() {
               </motion.a>
             </div> */}
 
-            {/* <div className="footer-section">
+          {/* <div className="footer-section">
               <h4>Company</h4>
               <motion.a href="#about" whileHover={{ x: 5 }}>
                 About
@@ -84,7 +86,7 @@ function Footer() {
                 Careers
               </motion.a>
             </div> */}
-{/* 
+          {/* 
             <div className="footer-section">
               <h4>Resources</h4>
               <motion.a href="#docs" whileHover={{ x: 5 }}>

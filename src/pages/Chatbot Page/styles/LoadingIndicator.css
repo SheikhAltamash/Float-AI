@@ -1,0 +1,25 @@
+.loading-message {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 2rem;
+}
+
+.typing-indicator {
+  display: flex;
+  gap: 4px;
+  padding: 0rem;
+  align-items: center;
+}
+
+.typing-indicator span {
+  width: 8px;
+  height: 8px;
+  background: #00bcd4;
+  border-radius: 50%;
+}
+
+.loading-text {
+  margin-left: 1rem;
+  opacity: 0.8;
+  font-style: italic;
+}

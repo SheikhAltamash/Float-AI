@@ -43,3 +43,7 @@ body.hide-scrollbar::-webkit-scrollbar { /* WebKit browsers */
   height: 0;
   display: none;
 }
+.home{
+  margin: 0 !important;
+  padding: 0 !important;
+}

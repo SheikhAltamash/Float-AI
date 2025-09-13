@@ -1,0 +1,154 @@
+.download-button-professional {
+  background: linear-gradient(145deg, 
+    rgba(30, 38, 50, 0.4) 0%, 
+    rgba(21, 27, 38, 0.6) 100%);
+  backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.download-toggle-professional {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 16px 20px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 16px;
+}
+
+.download-toggle-professional:hover {
+  background: linear-gradient(145deg, 
+    rgba(56, 178, 172, 0.1) 0%, 
+    rgba(79, 172, 254, 0.05) 100%);
+}
+
+.download-toggle-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.download-toggle-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.download-icon-professional {
+  font-size: 1.25rem;
+  filter: drop-shadow(0 2px 4px rgba(56, 178, 172, 0.3));
+}
+
+.download-text-professional {
+  color: #f1f5f9;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+}
+
+.download-arrow-professional {
+  color: #94a3b8;
+  transition: all 0.3s ease;
+}
+
+.download-toggle-professional:hover .download-arrow-professional {
+  color: #38b2ac;
+}
+
+.download-options-professional {
+  border-top: 1px solid rgba(148, 163, 184, 0.1);
+  background: linear-gradient(145deg, 
+    rgba(15, 23, 42, 0.3) 0%, 
+    rgba(30, 41, 59, 0.2) 100%);
+  backdrop-filter: blur(8px);
+}
+
+.download-option-professional {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 16px 20px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+}
+
+.download-option-professional:last-child {
+  border-bottom: none;
+}
+
+.download-option-professional:hover {
+  background: linear-gradient(145deg, 
+    rgba(56, 178, 172, 0.1) 0%, 
+    rgba(79, 172, 254, 0.05) 100%);
+  backdrop-filter: blur(12px);
+}
+
+.download-option-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.download-option-icon {
+  font-size: 1.1rem;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.3));
+}
+
+.download-option-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.download-option-format {
+  color: #f1f5f9;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+}
+
+.download-option-description {
+  color: #94a3b8;
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.025em;
+}
+
+.download-option-arrow {
+  color: #64748b;
+  transition: all 0.3s ease;
+}
+
+.download-option-professional:hover .download-option-arrow {
+  color: #38b2ac;
+  transform: translateX(2px);
+}
+
+@media (max-width: 768px) {
+  .download-toggle-professional,
+  .download-option-professional {
+    padding: 14px 16px;
+  }
+  
+  .download-option-info {
+    gap: 1px;
+  }
+  
+  .download-option-format {
+    font-size: 0.8rem;
+  }
+  
+  .download-option-description {
+    font-size: 0.7rem;
+  }
+}

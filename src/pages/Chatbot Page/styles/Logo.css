@@ -1,0 +1,52 @@
+.logo-fixed {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #00bcd4;
+  font-weight: 700;
+  font-size: 1.2rem;
+  user-select: none;
+  pointer-events: none;
+ background: transparent;
+  /* backdrop-filter: blur(10px); */
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  /* border: 1px solid rgba(0, 188, 212, 0.2); */
+}
+
+.logo-fixed .logo-icon {
+  font-size: 1.4rem;
+}
+
+.logo-fixed .logo-text {
+  background: linear-gradient(135deg, #00bcd4 0%, #26c6da 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Hide when sidebar is open to avoid overlap */
+.sidebar:not(.collapsed) ~ * .logo-fixed {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .logo-fixed {
+    top: 0.5rem;
+    left: 0.5rem;
+    font-size: 1rem;
+    padding: 0.4rem 0.6rem;
+  }
+  
+  .logo-fixed .logo-icon {
+    font-size: 1.2rem;
+  }
+}
+.chatLogo{
+  height: 18px;
+}

@@ -1,0 +1,119 @@
+.chat-page {
+  display: flex;
+  height: 100vh;
+  background: #0f0f0f;
+  color: #ffffff;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow: hidden; /* Prevent page-level scrolling */
+}
+
+/* Ensure body doesn't show scrollbars */
+body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* Global scrollbar hiding */
+* {
+  box-sizing: border-box;
+}
+
+/* Remove default scrollbars globally if needed */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+/* Custom selection styling */
+::selection {
+  background: rgba(0, 188, 212, 0.3);
+}
+
+::-moz-selection {
+  background: rgba(0, 188, 212, 0.3);
+}
+/* Enhanced chart-container for fullscreen */
+.chart-container {
+  background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-top: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Fullscreen styles for chart container */
+.chart-container:fullscreen {
+  background: #0f0f0f;
+  padding: 2rem;
+  border-radius: 0;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  max-width: none;
+  max-height: none;
+}
+
+.chart-container:fullscreen .chart-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.chart-container:fullscreen .chart-header h3 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.chart-container:fullscreen .chart-stats {
+  justify-content: center;
+  gap: 2rem;
+}
+
+.chart-container:fullscreen .main-value {
+  font-size: 3rem;
+}
+
+/* Fullscreen plot styling */
+.chart-container:fullscreen .js-plotly-plot {
+  width: 100% !important;
+  height: calc(100vh - 200px) !important;
+}
+
+/* Webkit fullscreen */
+.chart-container:-webkit-full-screen {
+  background: #0f0f0f;
+  padding: 2rem;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Mozilla fullscreen */
+.chart-container:-moz-full-screen {
+  background: #0f0f0f;
+  padding: 2rem;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* MS fullscreen */
+.chart-container:-ms-fullscreen {
+  background: #0f0f0f;
+  padding: 2rem;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

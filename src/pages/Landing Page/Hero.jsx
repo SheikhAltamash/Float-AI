@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import "./Hero.css";
+import { Link } from "react-router";
 
 function Hero() {
   const containerVariants = {
@@ -69,14 +70,14 @@ function Hero() {
               before.
             </motion.p>
             <motion.div className="hero-buttons" variants={itemVariants}>
-              <motion.button
+             <Link to='/chat'><motion.button
                 className="btn-primary hero-btn"
                 variants={buttonVariants}
                 whileHover="hover"
                 whileTap="tap"
               >
                 Launch Demo
-              </motion.button>
+              </motion.button></Link> 
               <motion.button
                 className="btn-secondary hero-btn"
                 variants={buttonVariants}

@@ -1,0 +1,235 @@
+.welcome-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  min-height: calc(100vh - 200px);
+  justify-content: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.welcome-hero {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.welcome-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 50%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+}
+
+.welcome-subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: #94a3b8;
+  margin-bottom: 0;
+  max-width: 600px;
+  line-height: 1.5;
+  text-align: center !important;
+  margin: auto !important;
+}
+
+.temperature-display {
+  margin-bottom: 3rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.temp-card {
+  background: 
+    linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.6) 100%);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 
+    0 10px 25px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(148, 163, 184, 0.1);
+  max-width: 400px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.temp-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #0ea5e9 0%, #06b6d4 50%, #8b5cf6 100%);
+}
+
+.temp-card h3 {
+  color: #e2e8f0;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.temp-value {
+  font-size: 3rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+
+.temp-change {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.change-indicator {
+  color: #10b981;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.time-period {
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.temp-chart-placeholder {
+  margin-top: 1rem;
+}
+
+.suggested-prompts {
+  width: 100%;
+  text-align: center;
+}
+
+.prompts-title {
+  color: #e2e8f0;
+  margin-bottom: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.prompts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.prompt-button {
+  background: 
+    linear-gradient(135deg, rgba(15, 23, 42, 0.6) 0%, rgba(30, 41, 59, 0.4) 100%);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  color: #e2e8f0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+
+.prompt-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(14, 165, 233, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.prompt-button:hover {
+  background: 
+    linear-gradient(135deg, rgba(14, 165, 233, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
+  border-color: rgba(14, 165, 233, 0.3);
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.1);
+  transform: translateY(-2px);
+}
+
+.prompt-button:hover::before {
+  left: 100%;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .welcome-section {
+    padding: 1.5rem 1rem;
+    min-height: calc(100vh - 150px);
+  }
+  
+  .welcome-hero {
+    margin-bottom: 2rem;
+  }
+  
+  .temperature-display {
+    margin-bottom: 2rem;
+  }
+  
+  .temp-card {
+    padding: 1.5rem;
+    max-width: 100%;
+  }
+  
+  .temp-value {
+    font-size: 2.5rem;
+  }
+  
+  .temp-change {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .prompts-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  
+  .prompt-button {
+    padding: 0.875rem 1rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .welcome-section {
+    padding: 1rem 0.75rem;
+  }
+  
+  .temp-card {
+    padding: 1.25rem;
+  }
+  
+  .temp-value {
+    font-size: 2rem;
+  }
+  
+  .prompts-grid {
+    gap: 0.5rem;
+  }
+  
+  .prompt-button {
+    padding: 0.75rem;
+    font-size: 0.8rem;
+  }
+}
