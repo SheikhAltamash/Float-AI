@@ -117,3 +117,26 @@ body {
   flex-direction: column;
   justify-content: center;
 }
+.chat-page {
+  display: flex;
+  height: 100vh;
+  background: #0f0f0f;
+  color: #ffffff;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow: hidden;
+}
+
+/* Mobile responsive layout */
+@media (max-width: 768px) {
+  .chat-page {
+    flex-direction: column;
+  }
+}
+
+/* Ensure proper mobile viewport handling */
+@media (max-width: 480px) {
+  .chat-page {
+    height: 100vh;
+    height: 100dvh; /* Dynamic viewport height for mobile browsers */
+  }
+}

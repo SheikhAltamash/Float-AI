@@ -9,10 +9,13 @@ function Sidebar({
   onSwitchConversation,
   isCollapsed,
   onToggleCollapse,
+  isMobileOpen=false,
 }) {
   return (
     <motion.div
-      className={`sidebar ${isCollapsed ? "collapsed" : ""}`}
+      className={`sidebar ${isCollapsed ? "collapsed" : ""}${
+        isMobileOpen ? "mobile-open" : ""
+      }`}
       animate={{ width: isCollapsed ? "50px" : "280px" }}
       transition={{ duration: 0.3 }}
     >
