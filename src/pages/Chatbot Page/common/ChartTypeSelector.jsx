@@ -7,6 +7,7 @@ function ChartTypeSelector({
   onChartTypeChange,
   supportedChartTypes = [],
   className = "",
+  compact = false,
 }) {
   const allChartTypes = [
     { value: "line", label: "Line Chart", icon: "📈" },
@@ -26,6 +27,27 @@ function ChartTypeSelector({
   // If no supported types provided, show all
   const chartTypes =
     availableChartTypes.length > 0 ? availableChartTypes : allChartTypes;
+
+  if (compact) {
+    return (
+      <div className="chart-type-compact-expanded">
+        {chartTypes.map((type) => (
+          <motion.button
+            key={type.value}
+            className={`chart-type-option ${
+              chartType === type.value ? "active" : ""
+            }`}
+            onClick={() => onChartTypeChange(type.value)}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <span className="chart-type-icon">{type.icon}</span>
+            <span className="chart-type-label">{type.label}</span>
+          </motion.button>
+        ))}
+      </div>
+    );
+  }
 
   return (
     <div className={`chart-type-selector-professional ${className}`}>
@@ -56,11 +78,6 @@ function ChartTypeSelector({
           </svg>
         </div>
       </div>
-      {chartTypes.length === 0 && (
-        <div className="no-charts-available">
-          <span>No chart types available for current data</span>
-        </div>
-      )}
     </div>
   );
 }

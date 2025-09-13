@@ -88,3 +88,61 @@
 .fullscreen-text{
     width:fit-content !important;
 }
+/* components/styles/FullscreenEnhancements.css */
+.chart-container:fullscreen {
+  background: #0f0f0f !important;
+  padding: 2rem;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 0;
+  margin: 0;
+}
+
+.chart-container:fullscreen .js-plotly-plot {
+  width: 100% !important;
+  height: calc(100vh - 200px) !important;
+}
+
+.chart-container:fullscreen .modebar {
+  background: rgba(0, 0, 0, 0.8) !important;
+  border-radius: 8px !important;
+  padding: 8px !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+.chart-container:fullscreen .modebar-btn {
+  background: rgba(0, 188, 212, 0.1) !important;
+  border: 1px solid rgba(0, 188, 212, 0.3) !important;
+  border-radius: 4px !important;
+  margin: 2px !important;
+}
+
+.chart-container:fullscreen .modebar-btn:hover {
+  background: rgba(0, 188, 212, 0.2) !important;
+  border-color: #00bcd4 !important;
+}
+
+/* Webkit fullscreen */
+.chart-container:-webkit-full-screen {
+  background: #0f0f0f !important;
+  padding: 2rem;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Mozilla fullscreen */
+.chart-container:-moz-full-screen {
+  background: #0f0f0f !important;
+  padding: 2rem;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

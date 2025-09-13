@@ -26,6 +26,7 @@ function ChartRenderer({
     plotBackground: "#1a1a1a",
     series: ["#00bcd4", "#4facfe", "#00f2fe", "#26c6da", "#64b5f6"],
   });
+  const [expandedSection, setExpandedSection] = useState(null);
 
   const handleChartTypeChange = (newChartType) => {
     setChartType(newChartType);
@@ -33,6 +34,10 @@ function ChartRenderer({
 
   const handleColorsChange = (newColors) => {
     setColors(newColors);
+  };
+
+  const handleSectionToggle = (section) => {
+    setExpandedSection(expandedSection === section ? null : section);
   };
 
   const getSeriesCount = () => {
@@ -95,32 +100,95 @@ function ChartRenderer({
 
   return (
     <div className="chart-renderer">
-      {/* Chart Controls Section */}
-      <div className="chart-controls">
-        <div className="chart-type-section">
-          <ChartTypeSelector
-            chartType={chartType}
-            onChartTypeChange={handleChartTypeChange}
-          />
+      {/* Horizontal Controls Container */}
+      <div className="chart-controls-horizontal">
+        {/* Main Buttons Row */}
+        <div className="controls-buttons-row">
+          <button
+            className={`control-button ${
+              expandedSection === "chartType" ? "active" : ""
+            }`}
+            onClick={() => handleSectionToggle("chartType")}
+          >
+            <span className="control-icon">📊</span>
+            <span className="control-text">Chart Type</span>
+            <span
+              className={`control-arrow ${
+                expandedSection === "chartType" ? "up" : "down"
+              }`}
+            >
+              ▼
+            </span>
+          </button>
+
+          <button
+            className={`control-button ${
+              expandedSection === "colors" ? "active" : ""
+            }`}
+            onClick={() => handleSectionToggle("colors")}
+          >
+            <span className="control-icon">🎨</span>
+            <span className="control-text">Colors</span>
+            <span
+              className={`control-arrow ${
+                expandedSection === "colors" ? "up" : "down"
+              }`}
+            >
+              ▼
+            </span>
+          </button>
+
+          <button
+            className={`control-button ${
+              expandedSection === "download" ? "active" : ""
+            }`}
+            onClick={() => handleSectionToggle("download")}
+          >
+            <span className="control-icon">📥</span>
+            <span className="control-text">Download</span>
+            <span
+              className={`control-arrow ${
+                expandedSection === "download" ? "up" : "down"
+              }`}
+            >
+              ▼
+            </span>
+          </button>
         </div>
 
-        <div className="chart-actions">
-          <DownloadButton
-            data={data}
-            chartType={chartType}
-            messageContent={messageContent}
-            title={title || data?.title || "Ocean Data"}
-          />
-        </div>
+        {/* Expanded Content Row */}
+        {expandedSection && (
+          <div className="controls-expanded-row">
+            {expandedSection === "chartType" && (
+              <ChartTypeSelector
+                chartType={chartType}
+                onChartTypeChange={handleChartTypeChange}
+                compact={true}
+              />
+            )}
+
+            {expandedSection === "colors" && (
+              <ColorCustomizer
+                colors={colors}
+                onColorsChange={handleColorsChange}
+                chartType={chartType}
+                seriesCount={getSeriesCount()}
+                compact={true}
+              />
+            )}
+
+            {expandedSection === "download" && (
+              <DownloadButton
+                data={data}
+                chartType={chartType}
+                messageContent={messageContent}
+                title={title || data?.title || "Ocean Data"}
+                compact={true}
+              />
+            )}
+          </div>
+        )}
       </div>
-
-      {/* Color Customization */}
-      <ColorCustomizer
-        colors={colors}
-        onColorsChange={handleColorsChange}
-        chartType={chartType}
-        seriesCount={getSeriesCount()}
-      />
 
       {/* Chart Display */}
       <div className="chart-display">{renderChart()}</div>

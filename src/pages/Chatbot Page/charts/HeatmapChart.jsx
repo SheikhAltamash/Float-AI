@@ -1,27 +1,49 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Plot from "react-plotly.js";
 import FullscreenButton from "../common/FullscreenButton";
-import ChartTypeSelector from "../common/ChartTypeSelector";
-import ColorCustomizer from "../common/ColorCustomizer";
-import DownloadButton from "../common/DownloadButton";
 import { getCommonLayout } from "../utils/chartConfig";
 
-function HeatmapChart({
-  data,
-  colors = {},
-  isFullscreen = false,
-  isCustomizationOpen = false,
-  onFullscreenChange,
-  onChartTypeChange,
-  onColorsChange,
-  onToggleCustomization,
-  chartType,
-  seriesCount,
-  messageContent,
-  title,
-  chartId,
-}) {
+function HeatmapChart({ data, colors = {} }) {
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
   if (!data || !data.chartData) return null;
+
+  const chartId = `chart-${Date.now()}-${Math.random()
+    .toString(36)
+    .substr(2, 9)}`;
+
+  // Check fullscreen status
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      const fullscreenElement =
+        document.fullscreenElement ||
+        document.webkitFullscreenElement ||
+        document.mozFullScreenElement ||
+        document.msFullscreenElement;
+      setIsFullscreen(!!fullscreenElement);
+    };
+
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
+    document.addEventListener("mozfullscreenchange", handleFullscreenChange);
+    document.addEventListener("MSFullscreenChange", handleFullscreenChange);
+
+    return () => {
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+      document.removeEventListener(
+        "webkitfullscreenchange",
+        handleFullscreenChange
+      );
+      document.removeEventListener(
+        "mozfullscreenchange",
+        handleFullscreenChange
+      );
+      document.removeEventListener(
+        "MSFullscreenChange",
+        handleFullscreenChange
+      );
+    };
+  }, []);
 
   // Convert regular chart data to heatmap format if needed
   const heatmapData = data.chartData.z
@@ -82,6 +104,22 @@ function HeatmapChart({
       : { l: 50, r: 50, t: 20, b: 50 },
   };
 
+  // Enhanced config with fullscreen support
+  const plotConfig = {
+    displayModeBar: isFullscreen ? "hover" : false,
+    modeBarButtonsToAdd: ["pan2d", "select2d", "lasso2d", "resetScale2d"],
+    modeBarButtonsToRemove: ["autoScale2d", "toggleSpikelines"],
+    displaylogo: false,
+    toImageButtonOptions: {
+      format: "png",
+      filename: data.title || "heatmap-chart",
+      height: isFullscreen ? 800 : 500,
+      width: isFullscreen ? 1200 : 700,
+      scale: 2,
+    },
+    responsive: true,
+  };
+
   return (
     <div
       className={`chart-container ${isFullscreen ? "in-fullscreen" : ""}`}
@@ -94,77 +132,11 @@ function HeatmapChart({
     >
       <FullscreenButton
         targetElementId={chartId}
-        onFullscreenChange={onFullscreenChange}
-        className={isFullscreen ? "fullscreen-active" : ""}
+        onFullscreenChange={setIsFullscreen}
       />
 
-      {/* Customization Toggle Button - Only in Fullscreen */}
-      {isFullscreen && (
-        <button
-          className="customization-toggle-btn"
-          onClick={onToggleCustomization}
-          title={
-            isCustomizationOpen ? "Close Customization" : "Open Customization"
-          }
-        >
-          <span className="toggle-icon">🎨</span>
-          <span className="toggle-text">
-            {isCustomizationOpen ? "Close" : "Customize"}
-          </span>
-        </button>
-      )}
-
-      {/* Fullscreen Controls Panel */}
-      {isFullscreen && isCustomizationOpen && (
-        <div className="fullscreen-controls-panel">
-          <div className="fullscreen-controls-header">
-            <h3>Chart Customization</h3>
-            <button
-              className="close-controls-btn"
-              onClick={onToggleCustomization}
-            >
-              ✕
-            </button>
-          </div>
-
-          <div className="fullscreen-controls-content">
-            <div className="fullscreen-control-section">
-              <ChartTypeSelector
-                chartType={chartType}
-                onChartTypeChange={onChartTypeChange}
-                className="fullscreen-selector"
-              />
-            </div>
-
-            <div className="fullscreen-control-section">
-              <ColorCustomizer
-                colors={colors}
-                onColorsChange={onColorsChange}
-                chartType={chartType}
-                seriesCount={seriesCount}
-                className="fullscreen-customizer"
-              />
-            </div>
-
-            <div className="fullscreen-control-section">
-              <DownloadButton
-                data={data}
-                chartType={chartType}
-                messageContent={messageContent}
-                title={title}
-                className="fullscreen-download"
-              />
-            </div>
-          </div>
-        </div>
-      )}
-
       <div className="chart-header">
-        <h3
-          style={{
-            fontSize: isFullscreen ? "2rem" : "1.2rem",
-          }}
-        >
+        <h3 style={{ fontSize: isFullscreen ? "2rem" : "1.2rem" }}>
           {data.title}
         </h3>
         {data.value && (
@@ -201,10 +173,7 @@ function HeatmapChart({
       <Plot
         data={plotData}
         layout={layout}
-        config={{
-          displayModeBar: isFullscreen,
-          responsive: true,
-        }}
+        config={plotConfig}
         style={{
           width: "100%",
           height: isFullscreen ? "calc(100vh - 200px)" : "350px",

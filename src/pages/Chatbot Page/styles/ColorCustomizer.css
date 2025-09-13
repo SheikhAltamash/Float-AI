@@ -153,3 +153,129 @@
     text-align: center;
   }
 }
+/* Compact Color Customizer */
+.color-customizer-compact {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: rgba(26, 26, 26, 0.6);
+  border: 1px solid rgba(0, 188, 212, 0.2);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.color-toggle-compact {
+  background: transparent;
+  border: none;
+  padding: 6px 8px;
+  color: #00bcd4;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.color-toggle-compact:hover {
+  background: rgba(0, 188, 212, 0.1);
+}
+
+.color-icon-compact {
+  font-size: 0.9rem;
+}
+
+.color-text-compact {
+  font-size: 0.8rem;
+}
+
+.color-arrow-compact {
+  font-size: 0.6rem;
+  transition: transform 0.3s ease;
+}
+
+.color-arrow-compact.up {
+  transform: rotate(180deg);
+}
+
+.color-controls-compact {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0 0.5rem;
+  border-left: 1px solid rgba(0, 188, 212, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+  overflow-x: auto;
+}
+
+.color-item-compact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 40px;
+}
+
+.color-label-compact {
+  font-size: 0.6rem;
+  color: #cbd5e0;
+  font-weight: 500;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.color-input-compact {
+  width: 24px;
+  height: 24px;
+  border: 1px solid rgba(0, 188, 212, 0.3);
+  border-radius: 4px;
+  cursor: pointer;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.color-input-compact:hover {
+  border-color: #00bcd4;
+  transform: scale(1.1);
+}
+
+.reset-colors-compact {
+  background: rgba(255, 99, 71, 0.1);
+  border: 1px solid rgba(255, 99, 71, 0.3);
+  border-radius: 4px;
+  padding: 3px 6px;
+  color: #ff6347;
+  font-size: 0.65rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  margin-left: 0.25rem;
+}
+
+.reset-colors-compact:hover {
+  background: rgba(255, 99, 71, 0.2);
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .color-item-compact {
+    min-width: 32px;
+  }
+  
+  .color-input-compact {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .color-label-compact {
+    font-size: 0.55rem;
+  }
+  
+  .reset-colors-compact {
+    padding: 2px 4px;
+    font-size: 0.6rem;
+  }
+}

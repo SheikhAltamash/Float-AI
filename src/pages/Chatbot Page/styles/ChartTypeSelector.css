@@ -94,3 +94,34 @@
     height: 6px;
   }
 }
+/* Add these styles for compact mode */
+.chart-selector-compact .chart-type-selector-professional {
+  margin-bottom: 0;
+}
+
+.chart-selector-compact .selector-label-professional {
+  display: none; /* Hide label in compact mode */
+}
+
+.chart-selector-compact .chart-type-select-professional {
+  padding: 6px 12px;
+  padding-right: 32px;
+  font-size: 0.8rem;
+  border-radius: 6px;
+}
+
+.chart-selector-compact .select-arrow-professional {
+  right: 8px;
+}
+
+@media (max-width: 768px) {
+  .chart-selector-compact .chart-type-select-professional {
+    padding: 5px 10px;
+    padding-right: 28px;
+    font-size: 0.75rem;
+  }
+  
+  .chart-selector-compact .select-arrow-professional {
+    right: 6px;
+  }
+}
