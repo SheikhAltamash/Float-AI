@@ -556,3 +556,170 @@
     height: 240px !important;
   }
 }
+/* FIXED: Enhanced Fullscreen Controls - Always Visible */
+.customization-toggle-btn-fixed {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: rgba(99, 102, 241, 0.9) !important;
+  border: 2px solid rgba(139, 92, 246, 0.8) !important;
+  border-radius: 10px;
+  padding: 12px 16px;
+  color: #ffffff !important;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex !important;
+  align-items: center;
+  gap: 0.6rem;
+  z-index: 9999 !important;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+}
+
+.customization-toggle-btn-fixed:hover {
+  background: rgba(139, 92, 246, 0.9) !important;
+  border-color: rgba(168, 85, 247, 0.9) !important;
+  transform: scale(1.05);
+  box-shadow: 0 6px 25px rgba(99, 102, 241, 0.6);
+}
+
+.customization-toggle-btn-fixed .toggle-icon {
+  font-size: 1.1rem;
+}
+
+.customization-toggle-btn-fixed .toggle-text {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* FIXED: Enhanced Fullscreen Controls Panel - Always Visible */
+.fullscreen-controls-panel-fixed {
+  position: fixed;
+  top: 5rem;
+  right: 1.5rem;
+  width: 350px;
+  max-height: calc(100vh - 6rem);
+  background: rgba(31, 41, 55, 0.95) !important;
+  border: 2px solid rgba(99, 102, 241, 0.6) !important;
+  border-radius: 16px;
+  backdrop-filter: blur(25px);
+  z-index: 9998 !important;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+  animation: slideInRight 0.4s ease;
+}
+
+.fullscreen-controls-header-fixed {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 1.5rem;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.3) 0%, rgba(139, 92, 246, 0.3) 100%);
+  border-bottom: 2px solid rgba(99, 102, 241, 0.4);
+}
+
+.fullscreen-controls-header-fixed h3 {
+  color: #f9fafb !important;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.close-controls-btn-fixed {
+  background: rgba(239, 68, 68, 0.2) !important;
+  border: 2px solid rgba(239, 68, 68, 0.5) !important;
+  border-radius: 6px;
+  color: #fca5a5 !important;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.close-controls-btn-fixed:hover {
+  background: rgba(239, 68, 68, 0.4) !important;
+  border-color: rgba(239, 68, 68, 0.8) !important;
+  color: #ffffff !important;
+}
+
+.fullscreen-controls-content-fixed {
+  padding: 1.5rem;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  background: rgba(17, 24, 39, 0.8);
+}
+
+.fullscreen-controls-content-fixed::-webkit-scrollbar {
+  width: 6px;
+}
+
+.fullscreen-controls-content-fixed::-webkit-scrollbar-track {
+  background: rgba(75, 85, 99, 0.3);
+  border-radius: 3px;
+}
+
+.fullscreen-controls-content-fixed::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.6);
+  border-radius: 3px;
+}
+
+.fullscreen-controls-content-fixed::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.8);
+}
+
+/* FIXED: Ensure all controls are visible in fullscreen */
+.fullscreen-controls-content-fixed .chart-type-selector-professional {
+  background: rgba(55, 65, 81, 0.8) !important;
+  border: 2px solid rgba(99, 102, 241, 0.3) !important;
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.fullscreen-controls-content-fixed .color-customizer {
+  background: rgba(55, 65, 81, 0.8) !important;
+  border: 2px solid rgba(99, 102, 241, 0.3) !important;
+  border-radius: 12px;
+  margin-top: 1rem;
+}
+
+.fullscreen-controls-content-fixed .download-button-professional {
+  background: rgba(55, 65, 81, 0.8) !important;
+  border: 2px solid rgba(99, 102, 241, 0.3) !important;
+  border-radius: 12px;
+  margin-top: 1rem;
+}
+
+/* FIXED: Mobile responsive for fullscreen controls */
+@media (max-width: 768px) {
+  .customization-toggle-btn-fixed {
+    top: 1rem;
+    right: 1rem;
+    padding: 10px 14px;
+    font-size: 0.8rem;
+  }
+  
+  .customization-toggle-btn-fixed .toggle-text {
+    display: none;
+  }
+  
+  .fullscreen-controls-panel-fixed {
+    top: 4rem;
+    right: 0.5rem;
+    left: 0.5rem;
+    width: auto;
+    max-width: calc(100vw - 1rem);
+  }
+  
+  .fullscreen-controls-content-fixed {
+    padding: 1rem;
+  }
+}
+
+/* FIXED: Remove the old problematic styles */
+.customization-toggle-btn,
+.fullscreen-controls-panel {
+  display: none !important;
+}
