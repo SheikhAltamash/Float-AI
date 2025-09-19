@@ -6,8 +6,8 @@ function InputArea({ onSendMessage, isLoading, isSidebarCollapsed }) {
   const [inputValue, setInputValue] = useState("");
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const textareaRef = useRef(null); 
-const [isMultiline, setIsMultiline] = useState(false);
+  const textareaRef = useRef(null);
+
   useEffect(() => {
     const chatContent = document.querySelector(".chat-content");
     if (!chatContent) return;
@@ -16,11 +16,9 @@ const [isMultiline, setIsMultiline] = useState(false);
       const currentScrollY = chatContent.scrollTop;
       const maxScroll = chatContent.scrollHeight - chatContent.clientHeight;
 
-      // Show input when at bottom or scrolling up
       if (currentScrollY >= maxScroll - 50 || currentScrollY < lastScrollY) {
         setIsVisible(true);
       } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        // Hide when scrolling down and not near bottom
         setIsVisible(false);
       }
 
@@ -36,8 +34,9 @@ const [isMultiline, setIsMultiline] = useState(false);
     if (inputValue.trim() && !isLoading) {
       onSendMessage(inputValue.trim());
       setInputValue("");
+      // Reset textarea height
       if (textareaRef.current) {
-        textareaRef.current.style.height = "18px";
+        textareaRef.current.style.height = "auto";
       }
     }
   };
@@ -49,58 +48,22 @@ const [isMultiline, setIsMultiline] = useState(false);
     }
   };
 
+  // Simplified input change handler
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
 
+    // Auto-resize textarea
+    if (textareaRef.current) {
+      textareaRef.current.style.height = "auto";
+      const scrollHeight = textareaRef.current.scrollHeight;
+      const maxHeight = 120;
+      textareaRef.current.style.height = `${Math.min(
+        scrollHeight,
+        maxHeight
+      )}px`;
+    }
+  };
 
-// Update the input change handler
-const handleInputChange = (e) => {
-  setInputValue(e.target.value);
-
-  // Check if we need multiline
-  const hasLineBreaks = e.target.value.includes("\n");
-  const isLong = e.target.value.length > 50;
-
-  if (hasLineBreaks || isLong) {
-    setIsMultiline(true);
-  } else if (e.target.value.length === 0) {
-    setIsMultiline(false);
-  }
-
-  // Auto-resize for textarea
-  if (isMultiline && textareaRef.current) {
-    textareaRef.current.style.height = "auto";
-    const scrollHeight = textareaRef.current.scrollHeight;
-    const minHeight = 24;
-    const maxHeight = 120;
-    const newHeight = Math.min(Math.max(scrollHeight, minHeight), maxHeight);
-    textareaRef.current.style.height = `${newHeight}px`;
-  }
-};
-
-// In the render section, use conditional rendering
-{
-  isMultiline ? (
-    <textarea
-      ref={textareaRef}
-      value={inputValue}
-      onChange={handleInputChange}
-      onKeyDown={handleKeyDown}
-      placeholder="Ask a follow-up question or start a new query..."
-      className="message-input"
-      disabled={isLoading}
-      rows="1"
-    />
-  ) : (
-    <input
-      type="text"
-      value={inputValue}
-      onChange={handleInputChange}
-      onKeyDown={handleKeyDown}
-      placeholder="Ask a follow-up question or start a new query..."
-      className="message-input message-input-single"
-      disabled={isLoading}
-    />
-  );
-}
   return (
     <AnimatePresence>
       {isVisible && (

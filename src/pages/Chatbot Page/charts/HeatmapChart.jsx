@@ -1,11 +1,41 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import Plot from "react-plotly.js";
 import FullscreenButton from "../common/FullScreenButtons";
 import { getCommonLayout } from "../utils/chartConfig";
 
-function HeatmapChart({ data, colors = {} }) {
+function HeatmapChart({ data, colors = {}, onPlotReady }) {
   const [isFullscreen, setIsFullscreen] = useState(false);
+const plotRef = useRef(null); // Add ref to access plot instance
+  const [plotDivId] = useState(
+    `plot-div-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
+  );
 
+ // Expose plot reference to parent component
+ useEffect(() => {
+   if (onPlotReady && plotRef.current) {
+     onPlotReady(plotRef.current);
+   }
+ }, [onPlotReady]);
+
+  if (!data || !data.chartData) return null;
+  const handlePlotInitialized = useCallback(
+    (figure, graphDiv) => {
+      console.log("Plot initialized:", graphDiv);
+      if (onPlotReady) {
+        onPlotReady(graphDiv); // Pass the actual DOM element
+      }
+    },
+    [onPlotReady]
+  );
+    const handlePlotUpdate = useCallback(
+      (figure, graphDiv) => {
+        console.log("Plot updated:", graphDiv);
+        if (onPlotReady) {
+          onPlotReady(graphDiv); // Pass the actual DOM element
+        }
+      },
+      [onPlotReady]
+    );
   if (!data || !data.chartData) return null;
 
   const chartId = `chart-${Date.now()}-${Math.random()
@@ -124,11 +154,7 @@ function HeatmapChart({ data, colors = {} }) {
     <div
       className={`chart-container ${isFullscreen ? "in-fullscreen" : ""}`}
       id={chartId}
-      style={{
-        background: `linear-gradient(135deg, ${
-          colors.background || "#1a1a1a"
-        } 0%, ${colors.plotBackground || "#0f0f0f"} 100%)`,
-      }}
+      
     >
       <FullscreenButton
         targetElementId={chartId}
@@ -170,15 +196,20 @@ function HeatmapChart({ data, colors = {} }) {
         )}
       </div>
 
-      <Plot
-        data={plotData}
-        layout={layout}
-        config={plotConfig}
-        style={{
-          width: "100%",
-          height: isFullscreen ? "calc(100vh - 200px)" : "350px",
-        }}
-      />
+      
+            <Plot
+              ref={plotRef}
+              data={plotData}
+              layout={layout}
+              config={plotConfig}
+              onInitialized={handlePlotInitialized}
+              onUpdate={handlePlotUpdate}
+              style={{
+                width: "100%",
+                height: isFullscreen ? "calc(100vh - 200px)" : "350px",
+              }}
+              divId={plotDivId}
+            />
     </div>
   );
 }

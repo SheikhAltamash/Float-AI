@@ -2,11 +2,10 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(0, 188, 212, 0.1);
-  /* border: 1px solid rgba(0, 188, 212, 0.3); */
+  background: transparent;
   border-radius: 6px;
   padding: 8px 12px;
-  color: #00bcd4;
+  color: #00bcd4 !important;
   font-size: 0.85rem;
   font-weight: 500;
   cursor: pointer;
@@ -15,15 +14,22 @@
   top: 1rem;
   right: 1rem;
   z-index: 1000;
-  backdrop-filter: blur(10px);
+  /* backdrop-filter: blur(10px); */
   width: fit-content !important;
-
+  text-decoration: none;
+  border: 1px solid ;
 }
 
 .fullscreen-btn:hover {
-  /* background: rgba(0, 188, 212, 0.2); */
-  /* border-color: #00bcd4; */
-  /* box-shadow: 0 2px 8px rgba(0, 188, 212, 0.2); */
+  background: rgba(0, 188, 212, 0.2) !important;
+  border-color: #00bcd4 !important;
+  box-shadow: 0 2px 8px rgba(0, 188, 212, 0.2);
+  color: #00bcd4 !important;
+}
+
+.fullscreen-btn:active {
+  background: rgba(0, 188, 212, 0.3) !important;
+  color: #00bcd4 !important;
 }
 
 .fullscreen-icon {
@@ -35,28 +41,245 @@
 .fullscreen-text {
   font-size: 0.8rem;
   white-space: nowrap;
+  width: fit-content !important;
 }
 
-/* Fullscreen styles */
-.chart-container:fullscreen {
-  background: #0f0f0f;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+/* Plotly Modebar Button Fixes - Updated with Black Background and Smaller Icons */
+
+/* Base modebar styling - black background */
+.modebar {
+  background: rgba(0, 0, 0, 0.9) !important;
+  border-radius: 6px !important;
+  padding: 3px !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(0, 188, 212, 0.3) !important;
 }
 
-.chart-container:fullscreen .fullscreen-btn {
-  position: fixed;
-  top: 2rem;
-  right: 2rem;
-  background: rgba(0, 0, 0, 0.8);
-  border-color: rgba(0, 188, 212, 0.5);
+/* Individual modebar buttons - smaller and more compact */
+.modebar-btn {
+  background: rgba(0, 0, 0, 0.8) !important;
+  border: 1px solid rgba(0, 188, 212, 0.2) !important;
+  border-radius: 3px !important;
+  margin: 1px !important;
+  color: #00bcd4 !important;
+  fill: #00bcd4 !important;
+  opacity: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 24px !important; /* Smaller buttons */
+  height: 24px !important; /* Smaller buttons */
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
 }
 
-/* Responsive */
+/* Modebar button hover state */
+.modebar-btn:hover {
+  background: rgba(0, 188, 212, 0.1) !important;
+  border-color: #00bcd4 !important;
+  color: #00bcd4 !important;
+  fill: #00bcd4 !important;
+  box-shadow: 0 1px 4px rgba(0, 188, 212, 0.2) !important;
+}
+
+/* Modebar button active/pressed state */
+.modebar-btn:active,
+.modebar-btn.active {
+  background: rgba(0, 188, 212, 0.2) !important;
+  border-color: #00bcd4 !important;
+  color: #00bcd4 !important;
+  fill: #00bcd4 !important;
+  transform: scale(0.95) !important;
+}
+
+/* SVG icons inside modebar buttons - smaller icons */
+.modebar-btn svg {
+  color: #00bcd4 !important;
+  fill: #00bcd4 !important;
+  width: 12px !important; /* Smaller icons */
+  height: 12px !important; /* Smaller icons */
+}
+
+/* Modebar button paths (for SVG icons) */
+.modebar-btn path {
+  fill: #00bcd4 !important;
+  stroke: #00bcd4 !important;
+  stroke-width: 0.5px !important;
+}
+
+/* Modebar group styling */
+.modebar-group {
+  margin: 0 2px !important;
+}
+
+/* Specific fullscreen modebar styling */
+.chart-container:fullscreen .modebar,
+.chart-container:-webkit-full-screen .modebar,
+.chart-container:-moz-full-screen .modebar,
+.chart-container:-ms-fullscreen .modebar {
+  background: rgba(0, 0, 0, 0.95) !important;
+  border: 1px solid rgba(0, 188, 212, 0.4) !important;
+  backdrop-filter: blur(15px) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+  z-index: 9998 !important;
+  padding: 4px !important;
+}
+
+.chart-container:fullscreen .modebar-btn,
+.chart-container:-webkit-full-screen .modebar-btn,
+.chart-container:-moz-full-screen .modebar-btn,
+.chart-container:-ms-fullscreen .modebar-btn {
+  background: rgba(0, 0, 0, 0.9) !important;
+  border: 1px solid rgba(0, 188, 212, 0.3) !important;
+  color: #00bcd4 !important;
+  fill: #00bcd4 !important;
+  width: 28px !important; /* Slightly larger in fullscreen but still compact */
+  height: 28px !important;
+}
+
+.chart-container:fullscreen .modebar-btn:hover,
+.chart-container:-webkit-full-screen .modebar-btn:hover,
+.chart-container:-moz-full-screen .modebar-btn:hover,
+.chart-container:-ms-fullscreen .modebar-btn:hover {
+  background: rgba(0, 188, 212, 0.15) !important;
+  border-color: #00bcd4 !important;
+  color: #00bcd4 !important;
+  fill: #00bcd4 !important;
+  box-shadow: 0 2px 8px rgba(0, 188, 212, 0.3) !important;
+}
+
+.chart-container:fullscreen .modebar-btn:active,
+.chart-container:fullscreen .modebar-btn.active,
+.chart-container:-webkit-full-screen .modebar-btn:active,
+.chart-container:-webkit-full-screen .modebar-btn.active,
+.chart-container:-moz-full-screen .modebar-btn:active,
+.chart-container:-moz-full-screen .modebar-btn.active,
+.chart-container:-ms-fullscreen .modebar-btn:active,
+.chart-container:-ms-fullscreen .modebar-btn.active {
+  background: rgba(0, 188, 212, 0.25) !important;
+  color: #00bcd4 !important;
+  fill: #00bcd4 !important;
+}
+
+.chart-container:fullscreen .modebar-btn svg,
+.chart-container:-webkit-full-screen .modebar-btn svg,
+.chart-container:-moz-full-screen .modebar-btn svg,
+.chart-container:-ms-fullscreen .modebar-btn svg {
+  color: #00bcd4 !important;
+  fill: #00bcd4 !important;
+  width: 14px !important; /* Slightly larger in fullscreen */
+  height: 14px !important;
+}
+
+.chart-container:fullscreen .modebar-btn path,
+.chart-container:-webkit-full-screen .modebar-btn path,
+.chart-container:-moz-full-screen .modebar-btn path,
+.chart-container:-ms-fullscreen .modebar-btn path {
+  fill: #00bcd4 !important;
+  stroke: #00bcd4 !important;
+  stroke-width: 0.5px !important;
+}
+
+/* Ensure modebar stays visible and positioned correctly */
+.js-plotly-plot .plotly .modebar {
+  position: absolute !important;
+  top: 10px !important;
+  right: 10px !important;
+  z-index: 1001 !important;
+}
+
+.chart-container:fullscreen .js-plotly-plot .plotly .modebar,
+.chart-container:-webkit-full-screen .js-plotly-plot .plotly .modebar,
+.chart-container:-moz-full-screen .js-plotly-plot .plotly .modebar,
+.chart-container:-ms-fullscreen .js-plotly-plot .plotly .modebar {
+  position: fixed !important;
+  top: 80px !important;
+  right: 20px !important;
+  z-index: 9998 !important;
+}
+
+/* Specific button types - black background with small icons */
+.modebar-btn[data-title*="Download"],
+.modebar-btn[data-title*="Zoom"],
+.modebar-btn[data-title*="Pan"],
+.modebar-btn[data-title*="Box"],
+.modebar-btn[data-title*="Lasso"],
+.modebar-btn[data-title*="Select"],
+.modebar-btn[data-title*="Reset"],
+.modebar-btn[data-title*="Autoscale"],
+.modebar-btn[data-title*="Compare"] {
+  background: rgba(0, 0, 0, 0.8) !important;
+  border: 1px solid rgba(0, 188, 212, 0.2) !important;
+  color: #00bcd4 !important;
+  fill: #00bcd4 !important;
+}
+
+.modebar-btn[data-title*="Download"]:hover,
+.modebar-btn[data-title*="Zoom"]:hover,
+.modebar-btn[data-title*="Pan"]:hover,
+.modebar-btn[data-title*="Box"]:hover,
+.modebar-btn[data-title*="Lasso"]:hover,
+.modebar-btn[data-title*="Select"]:hover,
+.modebar-btn[data-title*="Reset"]:hover,
+.modebar-btn[data-title*="Autoscale"]:hover,
+.modebar-btn[data-title*="Compare"]:hover {
+  background: rgba(0, 188, 212, 0.15) !important;
+  border-color: #00bcd4 !important;
+  color: #00bcd4 !important;
+  fill: #00bcd4 !important;
+}
+
+/* Force visibility for any hidden elements */
+.modebar,
+.modebar-container,
+.modebar-group,
+.modebar-btn {
+  visibility: visible !important;
+  opacity: 1 !important;
+  display: flex !important;
+}
+
+/* Mobile responsiveness for modebar - even smaller on mobile */
 @media (max-width: 768px) {
+  .modebar {
+    padding: 2px !important;
+  }
+  
+  .modebar-btn {
+    width: 20px !important; /* Extra small on mobile */
+    height: 20px !important;
+    margin: 1px !important;
+  }
+  
+  .modebar-btn svg {
+    width: 10px !important; /* Tiny icons on mobile */
+    height: 10px !important;
+  }
+  
+  .chart-container:fullscreen .modebar-btn,
+  .chart-container:-webkit-full-screen .modebar-btn,
+  .chart-container:-moz-full-screen .modebar-btn,
+  .chart-container:-ms-fullscreen .modebar-btn {
+    width: 24px !important;
+    height: 24px !important;
+  }
+  
+  .chart-container:fullscreen .modebar-btn svg,
+  .chart-container:-webkit-full-screen .modebar-btn svg,
+  .chart-container:-moz-full-screen .modebar-btn svg,
+  .chart-container:-ms-fullscreen .modebar-btn svg {
+    width: 12px !important;
+    height: 12px !important;
+  }
+  
+  .chart-container:fullscreen .js-plotly-plot .plotly .modebar,
+  .chart-container:-webkit-full-screen .js-plotly-plot .plotly .modebar,
+  .chart-container:-moz-full-screen .js-plotly-plot .plotly .modebar,
+  .chart-container:-ms-fullscreen .js-plotly-plot .plotly .modebar {
+    top: 60px !important;
+    right: 10px !important;
+  }
+  
   .fullscreen-btn {
     padding: 6px 8px;
     font-size: 0.75rem;
@@ -74,21 +297,34 @@
   }
 }
 
-/* Hide text on very small buttons */
-.fullscreen-btn.compact .fullscreen-text {
-  display: none;
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .modebar-btn {
+    border-width: 2px !important;
+    background: rgba(0, 0, 0, 0.95) !important;
+  }
+  
+  .chart-container:fullscreen .modebar-btn,
+  .chart-container:-webkit-full-screen .modebar-btn,
+  .chart-container:-moz-full-screen .modebar-btn,
+  .chart-container:-ms-fullscreen .modebar-btn {
+    background: rgba(0, 0, 0, 0.98) !important;
+    border-width: 2px !important;
+  }
 }
 
-.fullscreen-btn.compact {
-  padding: 6px;
-  width: 100px !important;
+/* Prevent button text from being hidden */
+.modebar-btn-title {
+  background: rgba(0, 0, 0, 0.9) !important;
+  color: #00bcd4 !important;
+  border: 1px solid rgba(0, 188, 212, 0.3) !important;
+  border-radius: 3px !important;
+  padding: 2px 6px !important;
+  font-size: 10px !important;
+  z-index: 10000 !important;
+}
 
-  justify-content: center;
-}
-.fullscreen-text{
-    width:fit-content !important;
-}
-/* components/styles/FullscreenEnhancements.css */
+/* Fullscreen styles */
 .chart-container:fullscreen {
   background: #0f0f0f !important;
   padding: 2rem;
@@ -101,33 +337,32 @@
   margin: 0;
 }
 
+.chart-container:fullscreen .fullscreen-btn {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  background: rgba(0, 0, 0, 0.8);
+  border-color: rgba(0, 188, 212, 0.5);
+}
+
 .chart-container:fullscreen .js-plotly-plot {
   width: 100% !important;
   height: calc(100vh - 200px) !important;
 }
 
-.chart-container:fullscreen .modebar {
-  background: rgba(0, 0, 0, 0.8) !important;
-  border-radius: 8px !important;
-  padding: 8px !important;
-  backdrop-filter: blur(10px) !important;
+/* Hide text on very small buttons */
+.fullscreen-btn.compact .fullscreen-text {
+  display: none;
 }
 
-.chart-container:fullscreen .modebar-btn {
-  background: rgba(0, 188, 212, 0.1) !important;
-  border: 1px solid rgba(0, 188, 212, 0.3) !important;
-  border-radius: 4px !important;
-  margin: 2px !important;
-}
-
-.chart-container:fullscreen .modebar-btn:hover {
-  background: rgba(0, 188, 212, 0.2) !important;
-  border-color: #00bcd4 !important;
+.fullscreen-btn.compact {
+  padding: 6px;
+  width: 100px !important;
+  justify-content: center;
 }
 
 /* Webkit fullscreen */
 .chart-container:-webkit-full-screen {
-  background: #0f0f0f !important;
   padding: 2rem;
   width: 100vw;
   height: 100vh;
@@ -138,7 +373,6 @@
 
 /* Mozilla fullscreen */
 .chart-container:-moz-full-screen {
-  background: #0f0f0f !important;
   padding: 2rem;
   width: 100vw;
   height: 100vh;

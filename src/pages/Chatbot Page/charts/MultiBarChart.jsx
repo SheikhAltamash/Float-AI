@@ -1,11 +1,41 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import Plot from "react-plotly.js";
 import FullscreenButton from "../common/FullScreenButtons";
 import { getCommonLayout } from "../utils/chartConfig";
 
-function MultiBarChart({ data, colors = {} }) {
+function MultiBarChart({ data, colors = {}, onPlotReady }) {
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const plotRef = useRef(null); // Add ref to access plot instance
+  const [plotDivId] = useState(
+    `plot-div-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
+  );
 
+  // Expose plot reference to parent component
+  useEffect(() => {
+    if (onPlotReady && plotRef.current) {
+      onPlotReady(plotRef.current);
+    }
+  }, [onPlotReady]);
+
+
+  const handlePlotInitialized = useCallback(
+    (figure, graphDiv) => {
+      console.log("Plot initialized:", graphDiv);
+      if (onPlotReady) {
+        onPlotReady(graphDiv); // Pass the actual DOM element
+      }
+    },
+    [onPlotReady]
+  );
+  const handlePlotUpdate = useCallback(
+    (figure, graphDiv) => {
+      console.log("Plot updated:", graphDiv);
+      if (onPlotReady) {
+        onPlotReady(graphDiv); // Pass the actual DOM element
+      }
+    },
+    [onPlotReady]
+  );
   if (!data || !data.barData) return null;
 
   const chartId = `chart-${Date.now()}-${Math.random()
@@ -135,13 +165,17 @@ function MultiBarChart({ data, colors = {} }) {
       </div>
 
       <Plot
+        ref={plotRef}
         data={plotData}
         layout={layout}
         config={plotConfig}
+        onInitialized={handlePlotInitialized}
+        onUpdate={handlePlotUpdate}
         style={{
           width: "100%",
           height: isFullscreen ? "calc(100vh - 200px)" : "350px",
         }}
+        divId={plotDivId}
       />
     </div>
   );

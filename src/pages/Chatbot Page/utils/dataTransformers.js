@@ -2,16 +2,19 @@
 
 // Transform single series data to multi-chart format
 export const transformToMultiData = (data) => {
+    console.log("transformToMultiData called with:", data);
   if (!data) {
     console.warn("No data provided for multi transformation");
     return null;
   }
 
   if (data.multiData && data.multiData.length > 0) {
+     console.log("Data already has multiData, returning as is");
     return data;
   }
 
   if (data.chartData && data.chartData.x && data.chartData.y) {
+      console.log("Converting single chartData to multiData format");
     // Create a simple multi-series from single series
     return {
       ...data,

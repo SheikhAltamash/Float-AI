@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState ,useRef} from "react";
 import LineChart from "./LineChart";
 import BarChart from "./BarChart";
 import MultiChart from "./MultiChart";
@@ -27,12 +27,16 @@ function ChartRenderer({
     plotBackground: "#1a1a1a",
     series: ["#00bcd4", "#4facfe", "#00f2fe", "#26c6da", "#64b5f6"],
   });
+  const plotElementRef = useRef(null);
   const [expandedSection, setExpandedSection] = useState(null);
 const { exportData } = useDataExport();
   const handleChartTypeChange = (newChartType) => {
     setChartType(newChartType);
   };
-
+ const handlePlotReady = (graphDiv) => {
+   console.log("Plot ready, storing graph div:", graphDiv);
+   plotElementRef.current = graphDiv;
+ };
   const handleColorsChange = (newColors) => {
     setColors(newColors);
   };
@@ -42,7 +46,7 @@ const { exportData } = useDataExport();
   };
 const handleDownload = (format) => {
   const exportTitle = title || data?.title || "Ocean Data";
-  exportData(format, data, exportTitle, messageContent);
+  exportData(format, data, exportTitle, messageContent,plotElementRef.current);
 };
   const getSeriesCount = () => {
     if (data.multiData) return data.multiData.length;
@@ -52,7 +56,7 @@ const handleDownload = (format) => {
 
   const renderChart = () => {
     let transformedData = data;
-    const chartProps = { colors };
+    const chartProps = { colors, onPlotReady: handlePlotReady };
 
     switch (chartType) {
       case "line":

@@ -1,7 +1,7 @@
 .input-container {
   position: fixed;
   bottom: 0;
-  left: 280px; /* Align with sidebar when open */
+  left: 280px;
   right: 0;
   background: #0f0f0f;
   padding: 0.6rem 1rem;
@@ -14,13 +14,12 @@
 
 .chat-area.sidebar-collapsed ~ .input-container,
 .input-container.sidebar-collapsed {
-  left: 50px; /* Align with collapsed sidebar */
+  left: 50px;
 }
 
-/* Inner wrapper to constrain input width */
 .input-wrapper-container {
   width: 100%;
-  max-width: 900px; /* Match chat container width */
+  max-width: 900px;
   margin: 0 auto;
 }
 
@@ -34,10 +33,11 @@
   background: rgba(0, 188, 212, 0.08);
   border: 1px solid rgba(0, 188, 212, 0.3);
   border-radius: 16px;
-  padding: 0.4rem 0.6rem;
+  padding: 0.3rem 0.5rem; /* Adjusted padding */
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
-  margin: 0 1.5rem; /* Add margin for padding */
+  margin: 0 1rem;
+  align-items: flex-end; /* Changed from center to flex-end */
 }
 
 .input-wrapper:focus-within {
@@ -50,35 +50,50 @@
   flex: 1;
   background: transparent;
   border: none;
-  padding: 10px 10px;
+  padding: 8px 12px; /* Reduced padding */
   color: #ffffff;
   font-size: 0.85rem;
   outline: none;
   resize: none;
-  min-height: 18px;
-  max-height: 80px;
   font-family: inherit;
   line-height: 1.4;
   
+  /* Fix for text alignment - CRITICAL */
+  min-height: 20px; /* Reduced min-height */
+  height: auto; /* Allow natural height */
+  max-height: 120px;
+  
+  /* Remove conflicting display properties */
+  display: block !important; /* Force block display */
+  
+  /* Proper text positioning */
+  vertical-align: top;
+  box-sizing: border-box;
+  
+  /* Prevent text cutoff */
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .message-input::placeholder {
   color: #888888;
+  line-height: 1.4; /* Match input line-height */
 }
 
 .send-button {
   background: linear-gradient(135deg, #00bcd4 0%, #26c6da 100%);
   border: none;
   border-radius: 12px;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  align-self: flex-end;
   flex-shrink: 0;
+  align-self: flex-end; /* Align to bottom of container */
+  margin-bottom: 2px; /* Small adjustment for perfect alignment */
 }
 
 .send-button:hover:not(:disabled) {
@@ -105,142 +120,41 @@
   margin-top: 0.25rem;
 }
 
-@media (max-width: 768px) {
-  .input-container {
-    left: 0;
-    right: 0;
-    padding: 0.6rem;
-    border-radius: 0;
-  }
-  
-  .input-container.sidebar-collapsed {
-    left: 0;
-  }
-  
-  .input-wrapper {
-    margin: 0 0.5rem;
-    padding: 0.4rem 0.5rem;
-  }
-  
-  .send-button {
-    width: 30px;
-    height: 30px;
-  }
-}
-
-
-
-.message-input {
-  flex: 1;
-  background: transparent;
-  border: none;
-  padding: 12px 14px; /* Increased padding */
-  color: #ffffff;
-  font-size: 0.85rem;
-  outline: none;
-  resize: none;
-  min-height: 24px; /* Increased from 18px */
-  max-height: 120px; /* Slightly increased max-height */
-  font-family: inherit;
-  line-height: 1.4;
-  display: flex;
-  align-items: center; /* Center text vertically */
-}
-
-.input-wrapper {
-  display: flex;
-  gap: 0.5rem;
-  background: rgba(0, 188, 212, 0.08);
-  border: 1px solid rgba(0, 188, 212, 0.3);
-  border-radius: 16px;
-  padding: 0.2rem 0.4rem; /* Reduced padding to give more space to input */
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
-  margin: 0 1.5rem;
-  align-items: center; /* Ensure proper alignment */
-}
-
-.send-button {
-  background: linear-gradient(135deg, #00bcd4 0%, #26c6da 100%);
-  border: none;
-  border-radius: 12px;
-  width: 36px; /* Slightly larger */
-  height: 36px; /* Slightly larger */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  align-self: center; /* Changed from flex-end to center */
-  flex-shrink: 0;
-}
-
-/* Mobile responsive fixes */
-@media (max-width: 768px) {
-  .input-container {
-    left: 0;
-    right: 0;
-    padding: 0.6rem;
-    border-radius: 0;
-  }
-  
-  .input-container.sidebar-collapsed {
-    left: 0;
-  }
-  
-  .input-wrapper {
-    margin: 0 0.5rem;
-    padding: 0.2rem 0.4rem;
-  }
-  
-  .message-input {
-    padding: 10px 12px; /* Adjusted mobile padding */
-    min-height: 22px; /* Slightly smaller on mobile */
-  }
-  
-  .send-button {
-    width: 32px;
-    height: 32px;
-  }
-}
-.message-input-single {
-  height: 24px;
-  line-height: 1.4;
-  padding: 12px 14px;
-}
-.input-container {
-  position: fixed;
-  bottom: 0;
-  left: 280px;
-  right: 0;
-  background: #0f0f0f;
-  padding: 0.6rem 1rem;
-  backdrop-filter: blur(20px);
-  z-index: 1000;
-  border-radius: 12px 12px 0 0;
-  display: flex;
-  justify-content: center;
-  border-top: 1px solid rgba(0, 188, 212, 0.1);
-}
-
-.chat-area.sidebar-collapsed ~ .input-container,
-.input-container.sidebar-collapsed {
-  left: 50px;
-}
-
-/* Mobile input adjustments */
+/* Mobile responsive */
 @media (max-width: 768px) {
   .input-container {
     left: 0;
     right: 0;
     padding: 0.8rem;
     border-radius: 0;
-    position: fixed;
-    bottom: 0;
   }
   
   .input-container.sidebar-collapsed {
     left: 0;
+  }
+  
+  .input-wrapper-container {
+    max-width: 100%;
+  }
+  
+  .input-wrapper {
+    margin: 0;
+    padding: 0.4rem 0.6rem;
+    border-radius: 12px;
+    align-items: flex-end; /* Maintain proper alignment on mobile */
+  }
+  
+  .message-input {
+    padding: 10px 12px;
+    font-size: 0.9rem;
+    min-height: 24px; /* Slightly larger on mobile */
+    line-height: 1.4;
+  }
+  
+  .send-button {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 2px;
   }
 }
 
@@ -248,99 +162,24 @@
   .input-container {
     padding: 0.6rem;
   }
-}
-
-.input-wrapper-container {
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-@media (max-width: 768px) {
-  .input-wrapper-container {
-    max-width: 100%;
-  }
-}
-
-.input-wrapper {
-  display: flex;
-  gap: 0.5rem;
-  background: rgba(0, 188, 212, 0.08);
-  border: 1px solid rgba(0, 188, 212, 0.3);
-  border-radius: 16px;
-  padding: 0.2rem 0.4rem; /* Reduced for mobile */
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
-  margin: 0 1rem;
-  align-items: center;
-}
-
-@media (max-width: 768px) {
+  
   .input-wrapper {
-    margin: 0;
-    padding: 0.3rem 0.5rem;
-    border-radius: 12px;
+    padding: 0.5rem 0.7rem;
   }
-}
-
-.message-input {
-  flex: 1;
-  background: transparent;
-  border: none;
-  padding: 12px 14px;
-  color: #ffffff;
-  font-size: 0.85rem;
-  outline: none;
-  resize: none;
-  min-height: 24px;
-  max-height: 120px;
-  font-family: inherit;
-  line-height: 1.4;
-  display: flex;
-  align-items: center;
-}
-
-@media (max-width: 768px) {
+  
   .message-input {
-    padding: 10px 12px;
-    font-size: 0.9rem; /* Slightly larger for mobile */
+    padding: 12px 14px;
+    font-size: 1rem;
     min-height: 28px;
   }
-}
-
-@media (max-width: 480px) {
-  .message-input {
-    padding: 8px 10px;
-    font-size: 1rem; /* Standard mobile size */
-  }
-}
-
-.send-button {
-  background: linear-gradient(135deg, #00bcd4 0%, #26c6da 100%);
-  border: none;
-  border-radius: 12px;
-  width: 40px; /* Larger for mobile */
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  align-self: center;
-  flex-shrink: 0;
-  touch-action: manipulation; /* Better touch response */
-}
-
-@media (max-width: 768px) {
+  
   .send-button {
     width: 44px;
     height: 44px;
   }
 }
 
-@media (max-width: 480px) {
-  .send-button {
-    width: 48px;
-    height: 48px;
-  }
+/* Remove the problematic single input class */
+.message-input-single {
+  /* Remove all properties that conflict */
 }

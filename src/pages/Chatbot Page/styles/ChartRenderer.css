@@ -494,7 +494,7 @@
 }
 
 .chart-container {
-  background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+  background:  #0f0f0f  !important;
   border: none;
   border-radius: 12px;
   padding: 1.25rem;
@@ -723,3 +723,4 @@
 .fullscreen-controls-panel {
   display: none !important;
 }
+.chart-container{background-color: #0f0f0f !important;}
