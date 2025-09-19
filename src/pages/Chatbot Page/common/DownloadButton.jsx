@@ -3,34 +3,33 @@ import { motion } from "framer-motion";
 import "../styles/DownloadButton.css";
 
 function DownloadButton({
-  data,
-  chartType,
-  messageContent,
-  title = "Ocean Data",
+  onDownload, // Receives the handler function from the parent
   className = "",
   compact = false,
 }) {
-  const handleDownload = (format) => {
-    console.log(`Downloading ${format} for ${title}`);
-    // Add your download logic here
+  // Renamed internal handler to avoid confusion
+  const handleOptionClick = (format) => {
+    if (onDownload) {
+      onDownload(format);
+    }
   };
 
+  // Updated download options
   const downloadOptions = [
-    { format: "PNG", description: "High quality image" },
-    { format: "SVG", description: "Vector graphics" },
-    { format: "PDF", description: "Document format" },
+    { format: "PDF", description: "Printable HTML report" },
     { format: "CSV", description: "Data spreadsheet" },
-    { format: "JSON", description: "Raw data" },
+    { format: "JSON", description: "Raw data object" },
+    { format: "NetCDF", description: "Scientific data (JSON)" },
   ];
 
   if (compact) {
     return (
       <div className="download-button-compact-expanded">
-        {downloadOptions.map((option, index) => (
+        {downloadOptions.map((option) => (
           <motion.button
             key={option.format}
             className="download-option-compact"
-            onClick={() => handleDownload(option.format)}
+            onClick={() => handleOptionClick(option.format)}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             title={`${option.format} - ${option.description}`}
@@ -44,7 +43,7 @@ function DownloadButton({
     );
   }
 
-  // Original non-compact version (also remove icons)
+  // Original non-compact version
   const [isExpanded, setIsExpanded] = React.useState(false);
 
   return (
@@ -89,7 +88,7 @@ function DownloadButton({
             <motion.button
               key={option.format}
               className="download-option-professional"
-              onClick={() => handleDownload(option.format)}
+              onClick={() => handleOptionClick(option.format)}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3, delay: index * 0.1 }}

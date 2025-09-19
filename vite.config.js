@@ -12,7 +12,7 @@ export default defineConfig({
     port: 5175, // 👈 change this to any port you want
     open: true, // (optional) auto-open browser on start
     allowedHosts: [
-      "4ca93ff5d19f.ngrok-free.app", // your ngrok domain
+      "3e5ba52b2ace.ngrok-free.app", // your ngrok domain
     ],
   },
 });

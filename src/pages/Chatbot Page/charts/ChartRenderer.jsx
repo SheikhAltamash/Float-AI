@@ -7,6 +7,7 @@ import HeatmapChart from "./HeatmapChart";
 import ChartTypeSelector from "../common/ChartTypeSelector";
 import ColorCustomizer from "../common/ColorCustomizer";
 import DownloadButton from "../common/DownloadButton";
+import { useDataExport } from "../hooks/useDataExport";
 import {
   transformToMultiData,
   transformToSingleData,
@@ -27,7 +28,7 @@ function ChartRenderer({
     series: ["#00bcd4", "#4facfe", "#00f2fe", "#26c6da", "#64b5f6"],
   });
   const [expandedSection, setExpandedSection] = useState(null);
-
+const { exportData } = useDataExport();
   const handleChartTypeChange = (newChartType) => {
     setChartType(newChartType);
   };
@@ -39,7 +40,10 @@ function ChartRenderer({
   const handleSectionToggle = (section) => {
     setExpandedSection(expandedSection === section ? null : section);
   };
-
+const handleDownload = (format) => {
+  const exportTitle = title || data?.title || "Ocean Data";
+  exportData(format, data, exportTitle, messageContent);
+};
   const getSeriesCount = () => {
     if (data.multiData) return data.multiData.length;
     if (data.barData) return data.barData.length;
@@ -174,14 +178,8 @@ function ChartRenderer({
               />
             )}
 
-            {expandedSection === "download" && (
-              <DownloadButton
-                data={data}
-                chartType={chartType}
-                messageContent={messageContent}
-                title={title || data?.title || "Ocean Data"}
-                compact={true}
-              />
+             {expandedSection === "download" && (
+              <DownloadButton onDownload={handleDownload} compact={true} />
             )}
           </div>
         )}
