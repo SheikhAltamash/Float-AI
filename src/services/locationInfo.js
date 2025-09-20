@@ -3,10 +3,7 @@ import axios from "axios";
 export const getLocationData = async () => {
   try {
     // Enhanced IP-API request with all available fields
-    const locationResponse = await axios.get(
-      "http://ip-api.com/json/?fields=66846719"
-    );
-
+const locationResponse = await axios.get("https://ipapi.co/json/");
     // Battery API data (where supported)
     let batteryData = {};
     try {
